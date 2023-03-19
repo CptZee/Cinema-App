@@ -4,29 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".HomeFragment">
 
-    <Button
-        android:id="@+id/btn_categories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginHorizontal="10dp"
-        android:text="Categories"
-        app:layout_constraintBottom_toTopOf="@+id/movie_card_view"
-        tools:layout_editor_absoluteX="10dp" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_categories"
+        android:layout_width="365dp"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corner_red"
+        android:drawableRight="@drawable/ic_arrow_down"
+        android:elevation="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Categories"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="23dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/movie_card_view"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="365dp"
+        android:layout_height="99dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@drawable/rounded_corner"
+        app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/btn_categories"
+        app:layout_constraintStart_toStartOf="@+id/btn_categories"
+        app:layout_constraintTop_toBottomOf="@+id/btn_categories">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -49,6 +60,14 @@
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="413dp"
+        android:layout_height="173dp"
+        android:src="@drawable/rounded_corner"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-26dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
