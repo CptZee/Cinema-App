@@ -1,11 +1,16 @@
 package com.github.cptzee.cinemax;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.cptzee.cinemax.Data.Category;
+import com.github.cptzee.cinemax.Data.CategoryHelper;
+import com.github.cptzee.cinemax.Fragments.HomeFragment;
+import com.github.cptzee.cinemax.Fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -15,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Run this code once.
+        SharedPreferences preferences = getSharedPreferences("First-Launch", MODE_PRIVATE);
+
+        //TODO: Fix the first launch preference
+        if(preferences.getBoolean("First-Launch", true))
+            setupDBDefaults(preferences);
 
         HomeFragment homeFragment = new HomeFragment();
         ProfileFragment profileFragment = new ProfileFragment();
@@ -36,5 +48,21 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void setupDBDefaults(SharedPreferences preferences){
+        CategoryHelper categoryHelper = new CategoryHelper(this);
+        categoryHelper.onCreate(categoryHelper.getWritableDatabase());
+        Category data = new Category();
+
+        String[] names = {"IMAX", "Ordinary", "3D", "Directors"};
+        for(String n : names){
+            data.setName(n);
+            categoryHelper.insert(data);
+        }
+
+        SharedPreferences.Editor myEdit = preferences.edit();
+        myEdit.putBoolean("First-Launch", false);
+
     }
 }
