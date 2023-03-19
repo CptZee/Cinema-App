@@ -26,8 +26,8 @@ public class CategoryHelper extends SQLiteOpenHelper {
 
         try{
             db.execSQL("CREATE TABLE " + table + "(" +
-                    "id int PRIMARY KEY AUTOINCREMENT," +
-                    "name varchar(30) NOT NULL");
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "name varchar(30) NOT NULL)");
         }catch (SQLException e){
             //Ignore as it is probably the table existing in the first place.
         }
