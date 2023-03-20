@@ -23,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Run this code once.
         SharedPreferences preferences = getSharedPreferences("First-Launch", MODE_PRIVATE);
+        boolean firstStart = preferences.getBoolean("First-Launch", true);
 
         //TODO: Fix the first launch preference
-        if(preferences.getBoolean("First-Launch", true))
+        if(firstStart)
             setupDBDefaults(preferences);
 
         HomeFragment homeFragment = new HomeFragment();
@@ -61,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
             categoryHelper.insert(data);
         }
 
-        SharedPreferences.Editor myEdit = preferences.edit();
-        myEdit.putBoolean("First-Launch", false);
-
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("First-Launch", false);
+        editor.apply();
     }
 }
